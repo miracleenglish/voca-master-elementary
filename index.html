@@ -132,6 +132,16 @@
   .to-top svg{width:26px;height:26px}
   .to-top span{font-size:13px;font-weight:800;letter-spacing:.5px;line-height:1}
   .to-top.show{display:flex}.to-top:hover{background:#ff6fa5;transform:translateY(-2px)}
+
+  /* 초등 인덱스: 중등보다 조금 크게 */
+  .card-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;max-width:840px;}
+  @media(max-width:720px){.card-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;}}
+  .card{justify-content:flex-start;min-height:112px;padding:15px 8px 13px;border-radius:17px;}
+  .card .num-badge{width:35px;height:35px;border-radius:11px;font-size:15px;margin-bottom:8px;}
+  .card .range{font-size:11.5px;margin-bottom:3px;}
+  .card .dl{font-size:11px;line-height:1.4;margin-top:0;text-align:center;word-break:keep-all;color:var(--navy2);font-weight:600;}
+  .day-section{margin-bottom:28px;}
+  .day-title{font-size:14.5px;margin-bottom:12px;}
 </style>
 </head>
 <body>
@@ -160,7 +170,7 @@
       <div class="sb-icon">🔤</div><div class="sb-text"><span class="sb-name">스펠링 놀이터 · 베이직</span><span class="sb-sub">No.1~300 · 30 Day</span></div>
     </button>
     <button class="series-btn pk" onclick="showSeries('el-study', this)">
-      <div class="sb-icon">📘</div><div class="sb-text"><span class="sb-name">워드마스터 베이직 (학습+놀이터)</span><span class="sb-sub">No.1~300 · 30 Day</span></div>
+      <div class="sb-icon">📘</div><div class="sb-text"><span class="sb-name">워드마스터 베이직</span><span class="sb-sub">학습+놀이터 · 30 Day</span></div>
     </button>
     <button class="series-btn coming" disabled title="준비중">
       <div class="sb-icon">📙</div><div class="sb-text"><span class="sb-name">워드마스터 컴플릿</span><span class="sb-sub">준비중</span></div>
