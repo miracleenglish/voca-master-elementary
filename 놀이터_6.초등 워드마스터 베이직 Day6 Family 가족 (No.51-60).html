@@ -44,6 +44,7 @@ main{background:var(--card);border:2px solid var(--line);border-radius:22px;padd
 .btn:disabled{opacity:.35;cursor:default}
 .row.nav{gap:12px;margin-top:6px}
 .row.nav .btn.big{margin-top:0}
+.row.skipnav{margin-top:auto;padding-top:10px;gap:10px}
 .btn.big{font-size:18px;padding:13px 30px;margin-top:6px}
 .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 .bigword{font-size:46px;font-weight:800;letter-spacing:1px;display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;min-height:64px}
@@ -242,10 +243,17 @@ function show(){
   if(S.i>=S.q.length) return finish();
   stage.innerHTML=''; renderProg(); document.onkeydown=null; fails=0;
   const w=S.q[S.i], g=GAMES.find(x=>x.id===(S.game==='review'?S.gmap[w]:S.game));
+  S.tok=(S.tok||0)+1; stopAll();
   g.run(w, stage);
+  if(g.id!=='card'){
+    const nv=el('div','row nav skipnav');
+    const pv=el('button','btn small','◀ 이전'); pv.disabled=(S.i===0); pv.onclick=()=>{ S.i=Math.max(0,S.i-1); S.mute=true; show(); };
+    const nx=el('button','btn small','다음 ▶'); nx.onclick=()=>{ S.mute=false; next(); };
+    nv.appendChild(pv); nv.appendChild(nx); stage.appendChild(nv);
+  }
 }
 function next(){ S.i++; S.mute=false; show(); }
-function correct(){ sfx(true); toast('참 잘했어요! ⭐', true); S.got++; total++; try{localStorage.setItem('spellTotal',total);}catch(e){} updateStars(); setTimeout(next,1200); }
+function correct(){ sfx(true); toast('참 잘했어요! ⭐', true); S.got++; total++; try{localStorage.setItem('spellTotal',total);}catch(e){} updateStars(); const tk=S.tok; setTimeout(()=>{ if(S.tok===tk) next(); },1200); }
 let fails=0;
 function wrong(w){
   fails++;
