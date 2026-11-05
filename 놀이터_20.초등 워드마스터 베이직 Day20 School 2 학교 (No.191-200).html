@@ -20,7 +20,9 @@ header{display:flex;justify-content:space-between;align-items:center}
 .snd{white-space:nowrap;border:2px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font-weight:800;font-size:13px;font-family:inherit;color:var(--ink);cursor:pointer}
 .snd.off{background:#2f2a25;border-color:#2f2a25;color:#fff}
 .ttl{white-space:nowrap}
-.stars{background:#fff;border:2px solid var(--line);border-radius:999px;padding:4px 12px;font-weight:800;font-size:16px}
+@media(max-width:340px){.ttl{font-size:13.5px}.stars{padding:3px 6px;font-size:13px}.back,.snd{padding:3px 5px!important;font-size:10.5px!important}}
+@media(max-width:420px){.ttl{font-size:16px}.stars{padding:3px 8px;font-size:14px}.back,.snd{padding:4px 7px!important;font-size:11.5px!important}.hr{gap:4px}}
+.stars{white-space:nowrap;background:#fff;border:2px solid var(--line);border-radius:999px;padding:4px 12px;font-weight:800;font-size:16px}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
 .tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
 .chip,.tab{border:2px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:14px;font-weight:700;color:var(--sub);cursor:pointer;font-family:inherit}
@@ -156,7 +158,7 @@ function el(tag, cls, html){ const e=document.createElement(tag); if(cls) e.clas
 function ckHTML(w){ return W[w].chunks.map((c,i)=>`<span class="ck c${i%4}">${c}</span>`).join(''); }
 function toast(msg, good){ const t=$('#toast'); t.textContent=msg; t.className='on'+(good?' good':''); clearTimeout(toast.h); toast.h=setTimeout(()=>t.className='',1400); }
 function initMeta(){ $('#sub').textContent=DATA.title;
-  if(/from=study/.test(location.search) && DATA.study){ const a=document.createElement('a'); a.className='btn small back'; a.href=encodeURIComponent(DATA.study); a.textContent='📖 학습'; $('.hr').prepend(a); } const f=$('#foot'); f.innerHTML=DATA.title+' <a class="home" href="index.html">🏠 목록</a> <button class="btn small" onclick="soundTest()">🔊 소리 테스트</button>'; }
+  if(DATA.study){ const a=document.createElement('a'); a.className='btn small back'; a.href=encodeURIComponent(DATA.study); a.textContent='📖 학습'; $('.hr').prepend(a); } const f=$('#foot'); f.innerHTML=DATA.title+' <a class="home" href="index.html">🏠 목록</a> <button class="btn small" onclick="soundTest()">🔊 소리 테스트</button>'; }
 function updateStars(){ $('#stars').textContent='⭐ '+total; }
 
 /* ========== 소리 ========== */
